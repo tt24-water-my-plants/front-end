@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
-import Home from './Components/Home'
 
 
 function App() {
@@ -18,8 +17,10 @@ function App() {
 <Switch>
 
 <Route path='/login' exact component={Login}/>
-<Route path='/signup' exact component={SignUp}/>
-<Route path='/Home' exact component={Home}/>
+<Route path='/signup' exact component90={SignUp}/>
+<Route path='/Home' exact component={() => {
+  window.location.href= 'https://water-my-plants-bw.vercel.app/'; return null;
+}}/>
    
 </Switch>
     </div>
