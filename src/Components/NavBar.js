@@ -5,15 +5,27 @@ import {Link} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import ListItem from '@material-ui/core/ListItem';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { green } from '@material-ui/core/colors';
 
+import NavImage from '../Svg/NavImage'
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: green[500],
+      },},});
+  
 function NavBar() {
     return (
-        <AppBar position="static">
-        <Toolbar variant="dense">
+        <ThemeProvider theme={theme}>
+        <AppBar className={theme} position="static">
+        <Toolbar className={theme}  variant="dense">
         
+        <a href="https:marketing-page-that-is-hosted"><NavImage />
+</a>{/* link to marketing page hosted on netlify  🔼*/}
         
-        {/* link to marketing homepage hosted on netlify  🔼*/}
-        <a>🍃</a>
         <ul className='nav-links'>
         
         <Link to='/Login'>
@@ -27,12 +39,10 @@ function NavBar() {
         <Link to='/Home'>
         <ListItem>Home</ListItem>
         </Link>
-        
-
-
         </ul>
         </Toolbar>
          </AppBar>
+         </ThemeProvider>
     )
 }
 
