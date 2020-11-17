@@ -51,7 +51,7 @@ export default function Login() {
         setLoginValues(initialLoginValues)
         console.log(initialLoginValues)
       })
-      .catch((err) =>{
+      .catch((err) => {
         console.log(err)
       })
     })
@@ -67,18 +67,24 @@ export default function Login() {
           <h1>Welcome Back</h1>
         </div>
         <form onSubmit={loginSubmit}>
-          <input
-            name='name'
-            type='text'
-            value={loginValues.name}
-            onChange={change}
-          />
-          <input
-            name='password'
-            type='password'
-            value={loginValues.password}
-            onChange={change}
-          />
+          <label>
+            Name
+            <input
+              name='name'
+              type='text'
+              value={loginValues.name}
+              onChange={change}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              name='password'
+              type='password'
+              value={loginValues.password}
+              onChange={change}
+            />
+          </label>
         </form>
         <h5>Forgot Password</h5>
         <button disabled={disabled}>Sign In</button>
