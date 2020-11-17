@@ -10,8 +10,8 @@ export default yup.object().shape({
         .typeError('Please enter a valid phone number')
         .positive('You need positive numbers')
         .integer('A phone number cannot include a decimal point')
-        .min(10, 'Phone number must include area code')
-        .max(10, 'Phone number cannot be more than 10 digits')
+        // .min(9, 'Phone number must include area code')
+        // .max(10, 'Phone number cannot be more than 10 digits')
         .required('Phone number is required'),
     password: yup
     .string()

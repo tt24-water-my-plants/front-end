@@ -142,6 +142,12 @@ export default function SignUp() {
           </label>
         </form>
         <button disabled={disabledSignup}>Sign Up</button>
+        <div>
+          <div>{signupErrors.username}</div>
+          {/* <div>{signupErrors.phone}</div> */}
+          <div>{signupErrors.password}</div>
+          <div>{signupErrors.confirmP}</div>
+        </div>
         <h3>Inspiring Quotes</h3>
         <p>"The Grass is greener on the other side" -Unknown</p>
         <p></p>

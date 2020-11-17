@@ -88,6 +88,10 @@ export default function Login() {
         </form>
         <h5>Forgot Password</h5>
         <button disabled={disabled}>Sign In</button>
+        <div>
+          <div>{loginErrors.name}</div>
+          <div>{loginErrors.password}</div>
+        </div>
       </>
    )
 }
