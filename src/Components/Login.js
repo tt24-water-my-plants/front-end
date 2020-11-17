@@ -1,46 +1,87 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import schema from '../validation/loginSchema'
+import * as yup from 'yup'
 import axios from 'axios'
 
-const initialLoginValues = {username: '', password: ''}
+const initialLoginValues = {name: '', password: ''}
+const initialLoginErrors = {
+  name: '',
+  password: '',
+}
+const initialDisabled = true
 
 export default function Login() {
-    const [users, setUsers] = useState([])
     const [loginValues, setLoginValues] = useState(initialLoginValues)
+    const [loginErrors, setLoginErrors] = useState(initialLoginErrors)
+    const [disabled, setDisabled] = useState(initialDisabled)
 
+    const loginValidate = (name, value) => {
+      yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setLoginErrors({...loginErrors, [name]: '',})
+      })
+      .catch((err) => {
+      setLoginErrors({...loginErrors, [name]: err.errors[0],})
+      })
+      // setLoginValues({
+      //   ...loginValues, 
+      //   [name] : value
+      // })
+    }
+      
     const change = (evt) => {
       const { name, value } = evt.target
       setLoginValues({...loginValues, [name] : value})
-      console.log(initialLoginValues)
+      loginValidate(name, value)
     }
 
+    useEffect(() => {
+      schema.isValid(loginValues)
+      .then((valid) => {
+        setDisabled(!valid)
+      })
+    }, [loginValues])
+
+    const formSubmit = (() => {
+      axios
+      .post()
+      .then(() => {
+        setLoginValues(initialLoginValues)
+        console.log(initialLoginValues)
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+    })
     
-      const newUser = { 
-        username: loginValues.username.trim(),
-        password: loginValues.password.trim(),
-    }
-
-
+      const loginSubmit = (evt) => {
+        evt.preventDefault()
+        formSubmit()
+      }
+            
     return (
       <>
         <div className='login-container'>
           <h1>Welcome Back</h1>
         </div>
-        <form>
+        <form onSubmit={loginSubmit}>
           <input
-            name='username'
+            name='name'
             type='text'
-            value={loginValues.username}
+            value={loginValues.name}
             onChange={change}
           />
           <input
             name='password'
-            type='text'
+            type='password'
             value={loginValues.password}
             onChange={change}
           />
         </form>
         <h5>Forgot Password</h5>
-        <button>Sign In</button>
+        <button disabled={disabled}>Sign In</button>
       </>
    )
 }
