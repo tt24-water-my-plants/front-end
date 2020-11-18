@@ -1,0 +1,15 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.add-plant-form {
+  display: flex;
+  flex-direction: column; 
+}
+
+/* .add-plant-button {
+  max-width: 8%;
+  min-width: 8%;
+} */
