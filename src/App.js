@@ -2,9 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
-import NavBar from './Components/NavBar'
-import Login from './Components/Login'
-import SignUp from './Components/SignUp'
+import NavBar from './Components/NavBar';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
+import PlantPage from './Components/PlantPage';
+
+import PrivateRoute from './Components/PrivateRoute';
 
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
     <div>
     <NavBar/>
 <Switch>
-
+{/* <Route exact path='/'>
+  <Redirect to='/Home' />
+</Route> */}
+<PrivateRoute exact path='/Plants' component={PlantPage} />
 <Route path='/login' exact component={Login}/>
 <Route path='/signup' exact component90={SignUp}/>
 <Route path='/Home' exact component={() => {
