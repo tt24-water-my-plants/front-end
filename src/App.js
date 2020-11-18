@@ -21,7 +21,7 @@ function App() {
 {/* <Route exact path='/'>
   <Redirect to='/Home' />
 </Route> */}
-<PrivateRoute exact path='/Plants' component={PlantPage} />
+<Route exact path='/Plants' component={PlantPage} />
 <Route path='/login' exact component={Login}/>
 <Route path='/signup' exact component90={SignUp}/>
 <Route path='/Home' exact component={() => {

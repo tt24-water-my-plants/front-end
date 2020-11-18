@@ -27,18 +27,24 @@ function NavBar() {
 </a>{/* link to marketing page hosted on netlify  🔼*/}
         
         <ul className='nav-links'>
-        
-        <Link to='/Login'>
-        <ListItem>Login</ListItem>
-        </Link>
-
-        <Link to='/Signup'>
-        <ListItem>Signup</ListItem>
-        </Link>
 
         <Link to='/Home'>
         <ListItem>Home</ListItem>
         </Link>
+
+        <Link to='/Plants'>
+        <ListItem>Plants</ListItem>
+        </Link>
+        
+        <Link to='/login'>
+        <ListItem>Login</ListItem>
+        </Link>
+
+        <Link to='/signup'>
+        <ListItem>Signup</ListItem>
+        </Link>
+
+        
         </ul>
         </Toolbar>
          </AppBar>
