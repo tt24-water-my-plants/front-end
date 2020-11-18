@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 
 import NavBar from './Components/NavBar';
@@ -13,8 +13,7 @@ import PrivateRoute from './Components/PrivateRoute';
 function App() {
   
   return (
-    <Router> 
-{/* //temp. routing feel free to change if you need to */}
+  
     <div>
     <NavBar/>
 <Switch>
@@ -30,7 +29,6 @@ function App() {
    
 </Switch>
     </div>
-    </Router>
   );
 }
 

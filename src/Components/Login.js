@@ -25,40 +25,40 @@ export default function Login() {
       .catch((err) => {
       setLoginErrors({...loginErrors, [name]: err.errors[0],})
       })
-      // setLoginValues({
-      //   ...loginValues, 
-      //   [name] : value
-      // })
+      setLoginValues({
+        ...loginValues, [name] : value
+      })
     }
       
     const change = (evt) => {
       const { name, value } = evt.target
-      setLoginValues({...loginValues, [name] : value})
       loginValidate(name, value)
     }
 
     useEffect(() => {
-      schema.isValid(loginValues)
-      .then((valid) => {
-        setDisabled(!valid)
-      })
-    }, [loginValues])
+      schema.isValid(loginValues).then((valid) => {
+        setDisabled(!valid);
+      });
+    }, [loginValues]);
 
-    const formSubmit = (() => {
-      axios
-      .post()
-      .then(() => {
-        setLoginValues(initialLoginValues)
-        console.log(initialLoginValues)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    })
+
     
       const loginSubmit = (evt) => {
         evt.preventDefault()
-        formSubmit()
+        const userCard = {
+          name: loginValues.name,
+          password: loginValues.password
+        }
+        axios
+        .post('https://water-my-plants-buildweek.herokuapp.com/api/auth/login', userCard)
+        .then((res) => {
+          console.log(res.data)
+          setLoginValues(initialLoginValues)
+        })
+        .catch((err) => {
+          console.log(err)
+          setLoginValues(initialLoginValues)
+        })
       }
             
     return (
@@ -85,9 +85,9 @@ export default function Login() {
               onChange={change}
             />
           </label>
+          <button type= 'submit' disabled={disabled}>Sign In</button>
         </form>
         <h5>Forgot Password</h5>
-        <button disabled={disabled}>Sign In</button>
         <div>
           <div>{loginErrors.name}</div>
           <div>{loginErrors.password}</div>

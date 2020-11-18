@@ -7,14 +7,13 @@ const initialSignupValues = {
     username: '',
     phone: '',
     password: '',
-    // confirmP: '',
+    confirmP: '',
 }
 
 const initialSignupErrors = {
     username: '',
     phone: '',
     password: '',
-    // confirmP: '',
 }
 
 const initialDisabledSignup = true
@@ -24,13 +23,6 @@ export default function SignUp() {
     const [signupValues, setSignupValues] = useState(initialSignupValues)
     const [signupErrors, setSignupErrors] = useState(initialSignupErrors)
     const [disabledSignup, setDisabledSignup] = useState(initialDisabledSignup)
-    // const [users, setUsers] = useState([])
-    
-    // const newUser = {
-    //     username: signupValues.username.trim(),
-    //     phone: signupValues.phone.trim(),
-    //     password: signupValues.phone.trim()
-    //   }
 
       const signupValidate = (name, value) =>{
           yup
@@ -42,60 +34,39 @@ export default function SignUp() {
           .catch((err) => {
               setSignupErrors({...signupErrors, [name]: err.errors[0],})
           })
+          setSignupValues({...signupValues, [name]: value})
       }
 
       const signupChange = (evt) => {
           const { name, value } = evt.target
-          setSignupValues({...signupValues, [name]: value})
           signupValidate(name, value)
       }
   
       useEffect(() => {
-        schema.isValid(signupValues)
-        .then((valid) => {
-          setDisabledSignup(!valid)
-        })
-      }, [signupValues])
+        schema.isValid(signupValues).then((valid) => {
+          setDisabledSignup(!valid);
+        });
+      }, [signupValues]);
 
-    //   const getUsers = () => {
-    //     axios.get('https://reqres.in/api/users')
-    //     .then((res) => {
-    //       setUsers(res.data)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    //   }
-  
-    //   const postNewUser = evt => {
-    //     evt.preventDefault()
-    //     console.log('Login submitted!')
-    //     axios.post('https://reqres.in/api/users', newUser)
-    //     .then((res) => {
-    //       setUsers([res.data, ...users])
-    //       setSignupErrors(initialSignupErrors)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    //   }
 
-      const signupFormSubmit = (() =>{
-        axios
-        .post()
-        .then(() => {
-            setSignupValues(initialSignupValues)
-            console.log(initialSignupValues)
+    const signupSubmit = (evt) => {
+      evt.preventDefault()
+      const userCard = {
+        username: signupValues.username.trim(),
+        phone: signupValues.phone.trim(),
+        password: signupValues.password.trim(),
+      }
+      axios
+      .post('https://water-my-plants-buildweek.herokuapp.com/api/auth/login', userCard)
+      .then((res) => {
+        console.log(res.data)
+        setSignupValues(initialSignupValues)
       })
       .catch((err) => {
         console.log(err)
-        })
+        setSignupValues(initialSignupValues)
       })
-
-      const signupSubmit = (evt) => {
-        evt.preventDefault()
-        signupFormSubmit()
-      }  
+    }
 
     
     return (
@@ -131,7 +102,7 @@ export default function SignUp() {
             onChange={signupChange}
           />
           </label>
-          {/* <label>
+          <label>
             Confirm Password
           <input
             name='confirmP'
@@ -139,14 +110,14 @@ export default function SignUp() {
             value={signupValues.confirmP}
             onChange={signupChange}
           />
-          </label> */}
+          </label>
+          <button type = 'submit' disabled={disabledSignup}>Sign Up</button>
         </form>
-        <button disabled={disabledSignup}>Sign Up</button>
         <div>
           <div>{signupErrors.username}</div>
           <div>{signupErrors.phone}</div>
           <div>{signupErrors.password}</div>
-          {/* <div>{signupErrors.confirmP}</div> */}
+          {signupValues.password === signupValues.confirmP ? '' : <div>Passwords do not match</div>}
         </div>
         <h3>Inspiring Quotes</h3>
         <p>"The Grass is greener on the other side" -Unknown</p>
