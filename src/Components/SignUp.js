@@ -7,14 +7,14 @@ const initialSignupValues = {
     username: '',
     phone: '',
     password: '',
-    confirmP: '',
+    // confirmP: '',
 }
 
 const initialSignupErrors = {
     username: '',
     phone: '',
     password: '',
-    confirmP: '',
+    // confirmP: '',
 }
 
 const initialDisabledSignup = true
@@ -131,7 +131,7 @@ export default function SignUp() {
             onChange={signupChange}
           />
           </label>
-          <label>
+          {/* <label>
             Confirm Password
           <input
             name='confirmP'
@@ -139,14 +139,14 @@ export default function SignUp() {
             value={signupValues.confirmP}
             onChange={signupChange}
           />
-          </label>
+          </label> */}
         </form>
         <button disabled={disabledSignup}>Sign Up</button>
         <div>
           <div>{signupErrors.username}</div>
-          {/* <div>{signupErrors.phone}</div> */}
+          <div>{signupErrors.phone}</div>
           <div>{signupErrors.password}</div>
-          <div>{signupErrors.confirmP}</div>
+          {/* <div>{signupErrors.confirmP}</div> */}
         </div>
         <h3>Inspiring Quotes</h3>
         <p>"The Grass is greener on the other side" -Unknown</p>
