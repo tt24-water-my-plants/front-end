@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import Plant from './Plant';
 import NewPlant from './NewPlant';
+import "../App.css"
 // import UpdatePlant from './UpdatePlant';
 
 import './componentStyles/PlantPage.css';

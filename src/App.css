@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&family=Raleway&display=swap');
+
 .App {
   text-align: center;
 }
@@ -7,8 +11,8 @@ nav {
   justify-content: space-around;
   align-items: center;
   min-width: 10vh;
-  background: #00b300 ;
-  color: white;
+  background: white ;
+  color:#728969;
 }
 
 .nav-links{
@@ -18,9 +22,175 @@ nav {
   justify-content: space-between;
   align-items: center;
   list-style: none;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
 }
 
 .nav-links a{
   color: white;
   text-decoration: none;
     }
+
+body {
+  background: #ecf1ea;
+}
+
+.login-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4d609c;
+}
+
+.login-container h1{
+  font-size: 3rem;
+  font-family: 'Kurale', serif;
+}
+.login-button{
+  display:flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: .5% 10%;
+  font-size: 1.2rem;
+  border-radius: .5rem;
+  color:#fff;
+  background:#6b7bab;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  margin-bottom: 5%;
+}
+
+
+
+.login-form{
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color:#3ba54e;
+
+  
+}
+
+.login-form input{
+  padding: .5rem 6rem;
+  color: #6b7bab;
+  font-weight: 600;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  display:flex;
+  
+  
+}
+
+.login-form label{
+  margin-bottom: 2rem;
+  
+}
+
+.login-form h5{
+  text-decoration: underline;
+}
+
+.signup-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4d609c;
+}
+
+.signup-container h1{
+  font-size: 3rem;
+  font-family: 'Kurale', serif;
+}
+
+.signup-button{
+  display:flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: .5% 10%;
+  font-size: 1.2rem;
+  border-radius: .5rem;
+  color:#fff;
+  background:#6b7bab;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  margin-bottom: 5%;
+  position: relative;
+  
+  
+  
+}
+
+.signup-form{
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Kurale', serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color:#3ba54e;
+
+  
+}
+
+
+
+.signup-form input{
+  padding: .5rem 15rem;
+  
+  
+  
+}
+
+.signup-form label{
+  margin-bottom: 2rem;
+  
+}
+
+.quotes{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #e2e6f4;
+  align-items: center;
+  border: double #49a2c4 5px;
+  width: 100%;
+  line-height: 2;
+}
+
+.login-button:disabled, button[disabled]{
+  background: #b5c7ff;
+  font-weight: 200;
+  color: lightslategray;
+  cursor: not-allowed;
+}
+
+.login-form input:focus{
+  background: #e2e6f4;
+}
+
+.signup-form input:focus{
+  background: #e2e6f4;
+}
+
+.signup-button:disabled, button[disabled]{
+  background: #b5c7ff;
+  font-weight: 200;
+  color: lightslategray;
+  cursor: not-allowed;
+}
+
+.signup-form input[type=submit], select {
+  width: 100%;
+  
+}
