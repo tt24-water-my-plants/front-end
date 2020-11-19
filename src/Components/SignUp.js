@@ -63,7 +63,7 @@ export default function SignUp() {
       axios
         .post('https://water-my-plants-buildweek.herokuapp.com/api/auth/register', userCard)
         .then((res) => {
-          console.log('data: ', res.data)
+          // console.log('data: ', res.data)
           setSignupValues(initialSignupValues)
           window.localStorage.setItem('username', res.data.username);
           window.localStorage.setItem('uid', res.data.id);
