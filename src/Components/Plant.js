@@ -2,7 +2,6 @@ import React from 'react';
 import './componentStyles/Plant.css';
 
 const Plant = (props) => {
-  console.log('props: ', props);
   return(
     <div className='plant-container'>
       {

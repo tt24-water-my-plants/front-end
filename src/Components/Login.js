@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react'
 import schema from '../validation/loginSchema'
 import * as yup from 'yup'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 
-const initialLoginValues = {name: '', password: ''}
+const initialLoginValues = {username: '', password: ''}
 const initialLoginErrors = {
-  name: '',
+  username: '',
   password: '',
 }
 const initialDisabled = true
 
 export default function Login() {
+
+  const { push } = useHistory();
+
     const [loginValues, setLoginValues] = useState(initialLoginValues)
     const [loginErrors, setLoginErrors] = useState(initialLoginErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -46,19 +50,21 @@ export default function Login() {
       const loginSubmit = (evt) => {
         evt.preventDefault()
         const userCard = {
-          name: loginValues.name,
+          username: loginValues.username,
           password: loginValues.password
         }
         axios
-        .post('https://water-my-plants-buildweek.herokuapp.com/api/auth/login', userCard)
-        .then((res) => {
-          console.log(res.data)
-          setLoginValues(initialLoginValues)
-        })
-        .catch((err) => {
-          console.log(err)
-          setLoginValues(initialLoginValues)
-        })
+          .post('https://water-my-plants-buildweek.herokuapp.com/api/auth/login', userCard)
+          .then((res) => {
+            console.log('successful login: ', res.data)
+            window.localStorage.setItem('token', res.data.token);
+            setLoginValues(initialLoginValues)
+            push('/Plants')
+          })
+          .catch((err) => {
+            console.log('Login Unsuccessful: ', err)
+            setLoginValues(initialLoginValues)
+          })
       }
             
     return (
@@ -70,9 +76,9 @@ export default function Login() {
           <label>
             Name
             <input
-              name='name'
+              name='username'
               type='text'
-              value={loginValues.name}
+              value={loginValues.username}
               onChange={change}
             />
           </label>
@@ -89,7 +95,7 @@ export default function Login() {
         </form>
         <h5>Forgot Password</h5>
         <div>
-          <div>{loginErrors.name}</div>
+          <div>{loginErrors.username}</div>
           <div>{loginErrors.password}</div>
         </div>
       </>
