@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import schema from '../validation/loginSchema'
 import * as yup from 'yup'
 import axios from 'axios'
+import "../App.css"
 import { useHistory } from 'react-router-dom';
 
 const initialLoginValues = {username: '', password: ''}
@@ -72,9 +73,10 @@ export default function Login() {
         <div className='login-container'>
           <h1>Welcome Back</h1>
         </div>
-        <form onSubmit={loginSubmit}>
+        <form className='login-form'onSubmit={loginSubmit}>
           <label>
             Name
+            <br></br>
             <input
               name='username'
               type='text'
@@ -84,6 +86,7 @@ export default function Login() {
           </label>
           <label>
             Password
+            <br></br>
             <input
               name='password'
               type='password'
@@ -91,9 +94,21 @@ export default function Login() {
               onChange={change}
             />
           </label>
-          <button type= 'submit' disabled={disabled}>Sign In</button>
+          <h5>Forgot Password</h5>
+          <button className='login-button'type= 'submit' disabled={disabled}>Sign In</button>
+          <div className= 'quotes'>
+          <h3>Inspiring Quotes</h3>
+        <p>"The Grass is greener on the other side" -Unknown</p>
+        <p>“Eat food. Not too much. Mostly plants.”
+          -Michael Pollan
+        </p>
+        <p>“We are made for loving. If we don’t love, we will be like plants without water.”
+― Desmond Tutu</p>
+<p>“Love and work are to people what water and sunshine are to plants.”
+― Jonathan Haidt</p>
+</div>
         </form>
-        <h5>Forgot Password</h5>
+        
         <div>
           <div>{loginErrors.username}</div>
           <div>{loginErrors.password}</div>
