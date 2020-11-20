@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import schema from '../validation/signupSchema'
 import * as yup from 'yup'
 import axios from 'axios'
+import "../App.css"
 import { useHistory } from 'react-router-dom';
 
 const initialSignupValues = {
@@ -79,45 +80,66 @@ export default function SignUp() {
     return (
         <>
         <div className='signup-container'>
-          <h2>Let's Get Savvy</h2>
+          <h1>Let's Get Savvy</h1>
         </div>
-        <form onSubmit={signupSubmit}>
+        <form className='signup-form'onSubmit={signupSubmit}>
           <label>
             Username
+            <br></br>
             <input
                 name='username'
                 type='text'
                 value={signupValues.username}
                 onChange={signupChange}
+                placeholder='johndoe@email.com'
             />
           </label>
           <label>
             Phone Number
+            <br></br>
             <input
                 name='phone_number'
                 type='integer'
                 value={signupValues.phone_number}
                 onChange={signupChange}
+                placeholder='XXXXXXXXXX'
             />
           </label>
           <label>
             Password
+            <br></br>
           <input
             name='password'
             type='password'
             value={signupValues.password}
             onChange={signupChange}
+            placeholder='At least 5 characters'
           />
           </label>
           <label>
             Confirm Password
+            <br></br>
           <input
             name='confirmP'
             type='password'
             value={signupValues.confirmP}
             onChange={signupChange}
+            placeholder='Re-enter password'
+            
           />
           </label>
+          <button className= 'signup-button'type = 'submit' disabled={disabledSignup}>Sign Up</button>
+          <div className= 'quotes'>
+          <h3>Inspiring Quotes</h3>
+        <p>"The Grass is greener on the other side" -Unknown</p>
+        <p>“Eat food. Not too much. Mostly plants.”
+          -Michael Pollan
+        </p>
+        <p>“We are made for loving. If we don’t love, we will be like plants without water.”
+        ― Desmond Tutu</p>
+        <p>“Love and work are to people what water and sunshine are to plants.”
+        ― Jonathan Haidt</p>
+        </div>
           <button type = 'submit'
            disabled={disabledSignup}
            >Sign Up</button>
@@ -128,10 +150,7 @@ export default function SignUp() {
           <div>{signupErrors.password}</div>
           {signupValues.password === signupValues.confirmP ? '' : <div>Passwords do not match</div>}
         </div>
-        <h3>Inspiring Quotes</h3>
-        <p>"The Grass is greener on the other side" -Unknown</p>
-        <p></p>
-        <p></p>
+        
       </>
     )
 }

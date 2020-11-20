@@ -26,12 +26,12 @@ const handleChange = (e) => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  console.log('heythere');
+//   console.log('heythere');
   axiosWithAuth()
     .post(`/users/:id/plants`) //2 is just a placeholder.  needs to be user ID??????
     .then((res) => {
       // props.setPlants(res.data)
-      console.log('setplants this? : ', res.data);
+//       console.log('setplants this? : ', res.data);
       push('/Plants');
     })
     .catch(err=>{
@@ -87,9 +87,6 @@ const handleSubmit = (e) => {
            />
         </label>
         <button type='submit'>Submit</button>
-      </form>
-    </div>
   )
 }
-
 export default NewPlant
