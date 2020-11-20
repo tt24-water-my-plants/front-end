@@ -15,8 +15,9 @@ const PlantPage = () => {
     axiosWithAuth()
     .get('/auth/plants')
     .then(res => {
-      console.log('data', res.data);
+      // console.log('data', res.data);
       setPlants(res.data);
+      console.log('res.data: ', res.data);
       // console.log(plants);
     })
     .catch(err => {
@@ -34,15 +35,23 @@ const PlantPage = () => {
       <div className='plants-loading-container'>
         <h2>Plants:</h2>
           <div className='plants-loading-container'>
+
+
             {plants.map((item) => {
               return (
                 <Plant 
                 key={item.id}
                 species={item.species}
                 h2o_frequency={item.h2o_frequency}
-                img_url={item.img_url} />
+                img_url={item.img_url}
+                cid={item.id}
+                plants={plants}
+                setPlants={setPlants}
+                 />
               )
             })}
+
+
           </div>
       </div>
     </div>

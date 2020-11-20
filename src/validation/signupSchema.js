@@ -5,7 +5,7 @@ export default yup.object().shape({
         .string()
         .email()
         .required('Your username should be your email'),
-    phone: yup
+    phone_number: yup
         .number()
         .typeError('Please enter a valid phone number')
         .positive('You need positive numbers')

@@ -18,9 +18,9 @@ function App() {
     <NavBar/>
 <Switch>
 {/* <Route exact path='/'>
-  <Redirect to='/Home' />
+  <Redirect to='/Plants' />
 </Route> */}
-<Route exact path='/Plants' component={PlantPage} />
+<PrivateRoute exact path='/Plants' component={PlantPage} />
 <Route path='/login' exact component={Login}/>
 <Route path='/signup' exact component={SignUp}/>
 <Route path='/Home' exact component={() => {
