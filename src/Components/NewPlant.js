@@ -1,73 +1,92 @@
-import React from 'react';
-import { useState } from 'react';
-
+import React, { useState } from 'react';
 import './componentStyles/NewPlant.css';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom'
 
-const initialPlant = {
-  id: null,
+const initialPlantValues = {
+  nickname: '',
   species: '',
-  h2o_frequency: '',
-  img_url: ''
+  h20_frequency: '',
+  img_url: '',
 }
 
+const NewPlant = () => {
 
-const NewPlant = (props) => {
-  const [ formVal, setFormVal ] = useState(initialPlant);
+  const [plant, setPlant] = useState(initialPlantValues);
+  const { push } = useHistory();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const data = formVal;
-    console.log(data);
-    console.log('click!');
-  }
+const handleChange = (e) => {
+  e.persist();
+  let value = e.target.value;
+  setPlant({
+    ...plant,
+    [e.target.name]: value
+  });
+};
 
-  const handleChanges = (e) => {
-    e.persist();
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormVal({
-      ...formVal,
-      [name]: value,
+const handleSubmit = (e) => {
+  e.preventDefault();
+//   console.log('heythere');
+  axiosWithAuth()
+    .post(`/users/:id/plants`) //2 is just a placeholder.  needs to be user ID??????
+    .then((res) => {
+      // props.setPlants(res.data)
+//       console.log('setplants this? : ', res.data);
+      push('/Plants');
+    })
+    .catch(err=>{
+      console.log(err);
     });
-    console.log('new values: ', formVal)
-  }
-
+};
 
   return(
-    <div className='form-container'>
-      <form className='add-plant-form' onSubmit={handleSubmit}>
+      <div className='new-form-container'>
+      <form className='new-plant-form' onSubmit={handleSubmit}>
+
       <label>
+          Nickname
           <input 
-            type='text'
-            name='image_url' 
-            placeholder='image url'
-            onChange={handleChanges}
-            value={formVal.img_url}
-             />
-        </label>
-        <label>
-          <input 
-            type='text'
-            name='species' 
-            placeholder='species'
-            onChange={handleChanges}
-            value={formVal.species}
-             />
-        </label>
-        <label>
-          <input 
-            type='text'
-            name='h2o_frequency' 
-            placeholder='h2o frequency'
-            onChange={handleChanges}
-            value={formVal.h2o_frequency}
-             />
+          type='text'
+          name='nickname'
+          value={plant.nickname}
+          placeholder='nickname, i.e. Frank'
+          onChange={handleChange}
+           />
         </label>
 
-        <button type='submit' className='add-plant-button'>Submit</button>
-      </form>
-    </div>
+        <label>
+          Image URL
+          <input 
+          type='text'
+          name='species'
+          value={plant.species}
+          placeholder='species'
+          onChange={handleChange}
+           />
+        </label>
+
+        <label>
+          Species
+          <input 
+          type='text'
+          name='h20_frequency'
+          value={plant.h20_frequency}
+          placeholder='i.e. daily, weekly'
+          onChange={handleChange}
+           />
+        </label>
+
+        <label>
+          Watering Frequency
+          <input 
+          type='text'
+          name='img_url'
+          value={plant.img_url}
+          placeholder='image url'
+          onChange={handleChange}
+           />
+        </label>
+        <button type='submit'>Submit</button>
   )
 }
-
 export default NewPlant

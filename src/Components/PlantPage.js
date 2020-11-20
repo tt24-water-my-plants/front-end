@@ -28,8 +28,8 @@ const PlantPage = () => {
   return(
     <div className='container'>
       <h1>Water My Plants</h1>
-      <div className='new-plant-form'>
-        <p>Add a Plant:</p>
+      <div className='add-plant-container'>
+        <h2>Add a Plant:</h2>
         <NewPlant />
       </div>
       <div className='plants-loading-container'>
