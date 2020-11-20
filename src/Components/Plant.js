@@ -14,7 +14,7 @@ const Plant = (props) => {
           <h3>image is null</h3>
           <h3>{props.species}</h3>
           <h3>{props.h2o_frequency}</h3> 
-          <UpdatePlant cid={props.cid}/>
+          <UpdatePlant cid={props.cid} data={props} setPlants={props.setPlants} plants={props.plants}/>
           <DeletePlant cid={props.cid} data={props}
           setPlants={props.setPlants} plants={props.plants} />
           {/* <button onClick={()=>{DeletePlant(props.cid, props)}}>Delete Listing</button> */}
@@ -25,7 +25,7 @@ const Plant = (props) => {
           <img src={props.img_url} alt='plant' className='plant-image'/>
           <h3>{props.species}</h3>
           <h3>{props.h2o_frequency}</h3>
-          <UpdatePlant cid={props.cid}/>
+          <UpdatePlant cid={props.cid} data={props} setPlants={props.setPlants} plants={props.plants}/>
           <DeletePlant cid={props.cid} data={props} setPlants={props.setPlants} plants={props.plants}/>
           {/* <button onClick={()=>{DeletePlant(props.cid,props)}}>Delete Listing</button> */}
         </div>
